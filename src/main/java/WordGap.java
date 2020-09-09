@@ -3,15 +3,11 @@ import java.util.*;
 public class WordGap {
     public int getMinGap(String wordA,String wordB){
         String[] strings = {"This", "is", "a", "test", "text", ",", "for", "test", "only"};
+        List<String> list = Arrays.asList(strings);
         int min = 10000000;
-        int lastPosWord1 = -1;
-        int lastPosWordB = -1;
-        List<String> list = new ArrayList<String>();
-        Map map = new HashMap<String,Integer>();
+        int lastPosWord1=-1,lastPosWordB = -1;
+        Map<String,Integer> map = new HashMap();
 
-        for (String string:strings){
-            list.add(string);
-        }
         if (!list.contains(wordA)||!list.contains(wordB)){
             return -1;
         }

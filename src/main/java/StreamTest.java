@@ -11,7 +11,7 @@ public class StreamTest {
         List<String> list = new ArrayList<>();
         list.add("Hello");
         list.add("World");
-        List<String> filtedList = list.stream().filter(string -> string.endsWith("d")).collect(Collectors.toList());
+        List<String> filtedList = list.stream().filter(StreamTest::endWith).collect(Collectors.toList());
         System.out.println(filtedList);
         try {
             Thread.sleep(9000);
@@ -20,5 +20,9 @@ public class StreamTest {
         }
         System.out.println("Hello");
 
+    }
+
+    static boolean endWith(String string) {
+        return string.endsWith("o");
     }
 }

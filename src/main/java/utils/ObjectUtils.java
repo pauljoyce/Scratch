@@ -1,4 +1,8 @@
+package utils;
+
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -13,10 +17,10 @@ public class ObjectUtils {
     private static final String JAVADATESTR = "java.util.Date";
 
     /**
-     * 获取利用反射获取类里面的值和名称
+     * 获取利用反射java bean转map
      *
      * @param obj
-     * @return
+     * @return map
      * @throws IllegalAccessException
      */
     public static Map<String, Object> objectToMap(Object obj) throws IllegalAccessException {
@@ -30,6 +34,31 @@ public class ObjectUtils {
             map.put(fieldName, value);
         }
         return map;
+    }
+
+    /**
+     * 利用反射map转Java bean
+     * @param clazz
+     * @param map
+     * @return
+     * @throws IllegalAccessException
+     * @throws InstantiationException
+     * @throws InvocationTargetException
+     */
+    public static Object mapToObject(Class<?> clazz,Map<String,Object> map) throws IllegalAccessException, InstantiationException, InvocationTargetException {
+        Object object = clazz.newInstance();
+        Method[] methods = clazz.getMethods();
+        for (Method method:methods
+             ) {
+            if (method.getName().contains("set")){
+                String field = method.getName().replace("set", "");
+                field = field.toLowerCase().charAt(0) + field.substring(1);
+                if (map.containsKey(field)){
+                    method.invoke(object, map.get(field));
+                }
+            }
+        }
+        return object;
     }
 
     /**

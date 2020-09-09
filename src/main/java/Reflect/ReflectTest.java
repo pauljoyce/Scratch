@@ -3,6 +3,10 @@ package Reflect;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
+
+import utils.ObjectUtils;
 
 /**
  * @Author: mengchao
@@ -37,10 +41,17 @@ public class ReflectTest {
         System.out.println("x");
     }
 
-
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, InvocationTargetException {
         //reflectNewInstance();
         //reflectPrivateField();
-        reflectPrivateConstructor();
+        //reflectPrivateConstructor();
+
+        //Map<String, Object> map = ObjectUtils.objectToMap(new User<>("a", 11));
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("name", "cha");
+        map.put("age", 11);
+        ObjectUtils.mapToObject(User.class, map);
+        System.out.println("x");
     }
 }
