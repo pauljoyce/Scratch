@@ -53,8 +53,8 @@ class CustomObj{
                 Objects.equals(name, obj.name);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id, name);
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
+    }
 }
