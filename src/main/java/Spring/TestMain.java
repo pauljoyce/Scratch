@@ -1,9 +1,11 @@
 package Spring;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import Spring.bean.TestBean;
+import Spring.bean.TestObjectVo;
 
 /**
  * @Author: mengchao

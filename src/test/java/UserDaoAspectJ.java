@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import Spring.bean.TestObjectVo;
 import aop.UserDao;
 import aop.WebConfiguration;
 
@@ -21,9 +22,16 @@ import aop.WebConfiguration;
 public class UserDaoAspectJ {
     @Autowired
     UserDao userDao;
+    @Autowired
+    TestObjectVo testObjectVo;
 
     @Test
     public void aspectJTest(){
         userDao.addUser();
+    }
+
+    @Test
+    public void yamlObjectTest(){
+        System.out.println(testObjectVo.getTaskName());
     }
 }

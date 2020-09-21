@@ -4,6 +4,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import Spring.bean.TestObjectVo;
+
 /**
  * @Author: mengchao
  * @Date: 2020/9/9 18:20
@@ -19,5 +21,10 @@ public class WebConfiguration {
     @Bean
     public UserDao userDao(){
         return new UserDaoImp();
+    }
+
+    @Bean
+    public TestObjectVo testObjectVo(){
+        return new TestObjectVo();
     }
 }
