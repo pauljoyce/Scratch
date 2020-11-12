@@ -3,6 +3,8 @@ package aop;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import Annotation.MyLog;
+
 /**
  * @Author: mengchao
  * @Date: 2020/9/9 18:06
@@ -25,8 +27,9 @@ public class UserDaoImp implements UserDao {
         System.out.println("delete user ......");
     }
 
+    @MyLog
     @Override
-    public void findUser() {
-        System.out.println("find user ......");
+    public void findUser(int param) {
+        System.out.println("find user " + param + "......");
     }
 }

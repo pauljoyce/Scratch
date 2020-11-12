@@ -31,6 +31,11 @@ public class UserDaoAspectJ {
     }
 
     @Test
+    public void logAspectTest(){
+        userDao.findUser(1);
+    }
+
+    @Test
     public void yamlObjectTest(){
         System.out.println(testObjectVo.getTaskName());
     }

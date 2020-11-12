@@ -1,4 +1,3 @@
-import Annotation.DbType;
 import Reflect.User;
 
 /**

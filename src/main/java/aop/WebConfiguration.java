@@ -19,6 +19,11 @@ public class WebConfiguration {
     }
 
     @Bean
+    public MyLogAspect myLogAspect(){
+        return new MyLogAspect();
+    }
+
+    @Bean
     public UserDao userDao(){
         return new UserDaoImp();
     }
