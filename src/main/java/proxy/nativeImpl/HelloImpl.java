@@ -9,4 +9,9 @@ public class HelloImpl implements Hello{
     public String sayHello(String string) {
         return "Impl:" + string;
     }
+
+    @Override
+    public void addUser() {
+        System.out.println("add user");
+    }
 }

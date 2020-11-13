@@ -7,8 +7,22 @@
 public class BinarySearch {
     public static void main(String[] args) {
         int[] src = new int[] {1, 3, 5, 7, 8, 9};
-        System.out.println(binarySearch(src, 3));
-        System.out.println(binarySearch(src,3,0,src.length-1));
+        //System.out.println(binarySearch(src, 3));
+        System.out.println(binarySearch1(src,5,0,src.length-1));
+    }
+    //递归法二分查找
+    public static int binarySearch1(int[] array,int key,int low,int high){
+        if (low>high){
+            return -1;
+        }
+        int mid = (high + low) / 2;
+        if (key>array[mid]){
+            return binarySearch1(array, key, mid + 1, high);
+        }else if (key<array[mid]){
+            return binarySearch1(array, key, low, mid - 1);
+        }else {
+            return mid;
+        }
     }
 
     /**

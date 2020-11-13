@@ -8,11 +8,20 @@ import java.lang.reflect.Proxy;
  */
 public class Main {
     public static void main(String[] args) {
-        //在需要使用Hello的时候，通过JDK动态代理获取Hello的代理对象。
+        //静态代理
+        Hello hello1 = new HelloImpl();
+        Hello proxyHello = new StaticProxyHello(hello1);
+        System.out.println(proxyHello.sayHello("hhh"));
+
+        //JDK动态代理
         Hello hello = (Hello) Proxy.newProxyInstance(
-                HelloImpl.class.getClassLoader(), // 1. 类加载器
-                new Class<?>[] {Hello.class}, // 2. 代理需要实现的接口，可以有多个
-                new LogInvocationHandler(new HelloImpl()));// 3. 方法调用的实际处理者
+                // 1. 类加载器
+                HelloImpl.class.getClassLoader(),
+                // 2. 代理需要实现的接口，可以有多个
+                new Class<?>[] {Hello.class},
+                // 3. 方法调用的实际处理者
+                new LogInvocationHandler(new HelloImpl()));
         System.out.println(hello.sayHello("love"));
+        hello.addUser();
     }
 }

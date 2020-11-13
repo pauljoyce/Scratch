@@ -11,7 +11,6 @@ import java.util.logging.Logger;
  * @Date: 2020/9/7 17:30
  */
 public class LogInvocationHandler implements InvocationHandler {
-    public static Logger log = Logger.getLogger("LogInvocationHandler.class");
     private Hello hello;
     public LogInvocationHandler(Hello hello) {
         this.hello = hello;
@@ -19,9 +18,7 @@ public class LogInvocationHandler implements InvocationHandler {
     
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        if("sayHello".equals(method.getName())) {
-            log.info("You said: " + Arrays.toString(args));
-        }
+        System.out.println("params:" + Arrays.toString(args));
         return method.invoke(hello, args);
     }
 }

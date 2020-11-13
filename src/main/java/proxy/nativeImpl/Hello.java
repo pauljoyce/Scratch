@@ -6,4 +6,6 @@ package proxy.nativeImpl;
  */
 public interface Hello {
     String sayHello(String string);
+
+    void addUser();
 }

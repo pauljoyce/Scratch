@@ -9,10 +9,19 @@ import java.util.logging.Logger;
  * @Date: 2020/9/7 16:39
  */
 public class StaticProxyHello implements Hello{
-    public static Logger log = Logger.getLogger("StaticProxyHello.class");
+    private Hello hello;
+
+    public StaticProxyHello(Hello hello){
+        this.hello = hello;
+    }
     @Override
     public String sayHello(String string) {
-        log.info("You said:" + string);
-        return "static proxy:" + string;
+        System.out.println("proxy syaHello");
+        return hello.sayHello(string);
+    }
+
+    @Override
+    public void addUser() {
+        System.out.println("proxy addUser");
     }
 }
