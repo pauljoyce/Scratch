@@ -28,6 +28,36 @@ public class ListNode {
     }
 
     static class Solution {
+
+        /**
+         * 在链表第一个元素前添加一个元素
+         * @return
+         */
+        public ListNode addFirstNode(ListNode listNode){
+            ListNode listNode1 = new ListNode(0);
+            listNode1.next = listNode;
+            return listNode1;
+        }
+
+        /**
+         * 删除链表第一个元素
+         * @return
+         */
+        public ListNode deleteFirstNode(ListNode listNode){
+            return listNode.next;
+        }
+
+        /**
+         * 在末尾添加一个元素
+         *
+         */
+        public ListNode addLastNode(ListNode lastNode){
+            ListNode listNode = new ListNode(10);
+            listNode.next = null;
+            lastNode.next = listNode;
+            return lastNode;
+        }
+
         /**
          * 链表反转
          * @param head
@@ -109,8 +139,10 @@ public class ListNode {
         node2.next = node3;
         node3.next = node4;
         node4.next = node5;
-        node5.next = node3;
+        //node5.next = node3;
         Solution solution = new Solution();
-        System.out.println(solution.findCycle1(node1));
+        //System.out.println(solution.findCycle1(node1));
+        ListNode node = solution.addFirstNode(node1);
+        System.out.println();
     }
 }

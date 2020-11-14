@@ -10,6 +10,7 @@ public class BinarySearch {
         //System.out.println(binarySearch(src, 3));
         System.out.println(binarySearch1(src,5,0,src.length-1));
     }
+
     //递归法二分查找
     public static int binarySearch1(int[] array,int key,int low,int high){
         if (low>high){
