@@ -1,4 +1,4 @@
-package Runtime;
+package runtime;
 
 public class ClinitTest {
     int anInt;
