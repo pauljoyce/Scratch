@@ -1,6 +1,4 @@
-package LeetCode;
-
-import tree.TreeNode;
+package leetCode;
 
 /**
  * @Author: mengchao

@@ -1,6 +1,4 @@
-package LeetCode;
-
-import org.omg.CORBA.INTERNAL;
+package leetCode;
 
 import java.util.ArrayList;
 import java.util.List;

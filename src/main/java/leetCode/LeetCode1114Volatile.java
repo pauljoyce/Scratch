@@ -1,8 +1,7 @@
-package LeetCode;
+package leetCode;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * 1114. 按序打印

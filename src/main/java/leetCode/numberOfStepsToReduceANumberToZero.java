@@ -1,4 +1,4 @@
-package LeetCode;
+package leetCode;
 
 /**
  * leetcode 1342

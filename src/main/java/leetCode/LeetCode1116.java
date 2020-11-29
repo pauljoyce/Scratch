@@ -1,4 +1,4 @@
-package LeetCode;
+package leetCode;
 
 import java.util.concurrent.Semaphore;
 import java.util.function.IntConsumer;

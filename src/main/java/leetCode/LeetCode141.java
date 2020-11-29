@@ -1,4 +1,4 @@
-package LeetCode;
+package leetCode;
 
 /**
  * @Author: mengchao

@@ -1,19 +1,24 @@
-package LeetCode;
+package leetCode;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
 
 import lombok.SneakyThrows;
 
 /**
- * Volatile实现，会超时
+ * ReentrantLock实现
  * @Author: mengchao
- * @Date: 2020/9/10 18:00
+ * @Date: 2020/9/10 19:01
  */
-public class LeetCode1115Volatile {
+public class LeetCode1115ReentrantLock {
     static class FooBar {
+        private ReentrantLock lock = new ReentrantLock();
+        private Condition fooCondition = lock.newCondition();
+        private Condition barCondition = lock.newCondition();
+        private int flag = 0;
         private int n;
-        private volatile int flag=0;
 
         public FooBar(int n) {
             this.n = n;
@@ -22,33 +27,42 @@ public class LeetCode1115Volatile {
         public void foo(Runnable printFoo) throws InterruptedException {
 
             for (int i = 0; i < n; i++) {
-                while (flag==1){
-                    //让出cpu时间后，线程会由Running状态转为Ready状态，然后会立刻再次进入Running，之后又进入Ready无限循环，不过从输出上看线程是"暂停"的
-                    //另一个线程改变flag后，线程再次进入Running后强制刷新flag的值，线程得以正常输出
-                    Thread.yield();
+                lock.lock();
+                try{
+                    if (flag!=0){
+                        fooCondition.await();
+                    }
+                    // printFoo.run() outputs "foo". Do not change or remove this line.
+                    printFoo.run();
+                    barCondition.signal();
+                    flag=1;
+                }finally {
+                    lock.unlock();
                 }
-                // printFoo.run() outputs "foo". Do not change or remove this line.
-                printFoo.run();
-                flag = 1;
             }
         }
 
         public void bar(Runnable printBar) throws InterruptedException {
 
             for (int i = 0; i < n; i++) {
-                while (flag==0){
-                    Thread.yield();
+                lock.lock();
+                try{
+                    if (flag!=1){
+                        barCondition.await();
+                    }
+                    // printBar.run() outputs "bar". Do not change or remove this line.
+                    printBar.run();
+                    fooCondition.signal();
+                    flag=1;
+                }finally {
+                    lock.unlock();
                 }
-                // printBar.run() outputs "bar". Do not change or remove this line.
-                printBar.run();
-                flag = 0;
             }
         }
     }
-
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newFixedThreadPool(2);
-        FooBar fooBar = new FooBar(5);
+        LeetCode1115Volatile.FooBar fooBar = new LeetCode1115Volatile.FooBar(5);
 
         executorService.submit(
                 new Runnable() {
