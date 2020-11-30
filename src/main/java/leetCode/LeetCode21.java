@@ -6,7 +6,15 @@ package leetCode;
  */
 public class LeetCode21 {
 
-     public class ListNode {
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        ListNode l1 = new ListNode(1, new ListNode(2, null));
+        ListNode l2 = new ListNode(3, new ListNode(4, null));
+        ListNode listNode = solution.mergeTwoLists(l1, l2);
+        System.out.println();
+    }
+
+     public static class ListNode {
          int val;
          ListNode next;
          ListNode() {}
@@ -14,26 +22,30 @@ public class LeetCode21 {
          ListNode(int val, ListNode next) { this.val = val; this.next = next; }
      }
 
-    class Solution {
-        ListNode finalListNode = new ListNode();
+    static class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-            ListNode listNode = new ListNode();
-            if (l1.val< l2.val){
-                listNode.val = l2.val;
-                mergeTwoLists()
-            }else if (l1.val> l2.val){
-                listNode.val = l1.val;
-            }else {
-                listNode.val = l1.val;
-                ListNode listNode1 = new ListNode(l1.val);
-                listNode.next = listNode1;
+            // 类似归并排序中的合并过程
+            ListNode dummyHead = new ListNode(0);
+            ListNode cur = dummyHead;
+            while (l1 != null && l2 != null) {
+                if (l1.val < l2.val) {
+                    cur.next = l1;
+                    cur = cur.next;
+                    l1 = l1.next;
+                } else {
+                    cur.next = l2;
+                    cur = cur.next;
+                    l2 = l2.next;
+                }
             }
-
-            finalListNode.next = listNode;
+            // 任一为空，直接连接另一条链表
+            if (l1 == null) {
+                cur.next = l2;
+            } else {
+                cur.next = l1;
+            }
+            return dummyHead.next;
         }
 
-        public ListNode merge(){
-
-        }
     }
 }
