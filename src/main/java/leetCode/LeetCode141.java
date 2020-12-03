@@ -1,6 +1,7 @@
 package leetCode;
 
 /**
+ * 判断链表是否有环
  * @Author: mengchao
  * @Date: 2020/11/25 23:28
  */
