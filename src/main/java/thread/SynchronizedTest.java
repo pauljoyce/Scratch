@@ -1,46 +1,34 @@
 package thread;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 /**
- * 获取线程执行结果，非阻塞
  * @Author: mengchao
- * @Date: 2020/12/5 22:11
+ * @Date: 2020/12/6 15:43
  */
 public class SynchronizedTest {
-    public static void main(String[] args) {
-        ExecutorService service = Executors.newFixedThreadPool(5);
-        ExecutorService watchService = Executors.newFixedThreadPool(5);
-        List<String> list = Arrays.asList("this", "is", "a", "word");
-        for (int i = 0; i < 5; i++) {
-            Future<String> future= (Future<String>) service.submit(() -> {
-                list.get(0);
-            });
-            watchService.submit(()->{
-                while (!future.isDone()) {
-                    System.out.println("waiting...");
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+
+    static class Task implements Runnable{
+        private static volatile int count = 0;
+        @Override
+        public void run() {
+            synchronized (this){
                 try {
-                    future.get();
-                } catch (InterruptedException | ExecutionException e) {
+                    for (int i = 0; i < 5; i++) {
+                        System.out.println(Thread.currentThread().getName() + ":" + (count++));
+                        Thread.sleep(100);
+                    }
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-            });
+            }
         }
-
-        service.shutdown();
-
     }
 
+    public static void main(String[] args) {
+        Task task = new Task();
+        Thread t1 = new Thread(task, "t1");
+        Thread t2 = new Thread(task, "t2");
+        t1.start();
+        t2.start();
 
+    }
 }
