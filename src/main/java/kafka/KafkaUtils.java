@@ -66,6 +66,7 @@ public class KafkaUtils {
                 System.out.printf("topic:%s,offset:%d,消息:%s%n", record.topic(), record.offset(), record.value());
             }
         }
+        //kafkaConsumer.commitAsync();
     }
 
     public static void produceToKafka(String brokerList, String batchSize, String requiredAcks, String topic, List<Map<String, Object>> list) {
