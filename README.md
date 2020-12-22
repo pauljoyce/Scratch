@@ -17,3 +17,5 @@
 <br>Spring事务相关
 <br>12.21
 <br>MyBatis缓存
+<br>12.22
+<br>MyBatis二级缓存
