@@ -19,3 +19,5 @@
 <br>MyBatis缓存
 <br>12.22
 <br>MyBatis二级缓存
+<br>12.23
+<br>mysql in or exists

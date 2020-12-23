@@ -4,8 +4,9 @@
  */
 public class StringTest {
     public static void main(String[] args) {
-        String s = "This is a test.";
-        s.indexOf("s");
+        String s = "2";
+        double d = Double.parseDouble(s);
         System.out.println("xx");
+
     }
 }
