@@ -21,3 +21,5 @@
 <br>MyBatis二级缓存
 <br>12.23
 <br>mysql in or exists
+<br>12.25
+<br>es and kafka
